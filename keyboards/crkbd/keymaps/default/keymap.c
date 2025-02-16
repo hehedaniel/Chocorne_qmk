@@ -1,22 +1,19 @@
-/*
-Copyright 2019 @foostan
-Copyright 2020 Drashna Jaelre <@drashna>
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 2 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
 #include "keycodes.h"
 #include QMK_KEYBOARD_H
+
+// Definir las teclas del combo
+enum combo_events {
+    COMBO_CLEAN_TERMINAL,  // Nombre del combo
+    COMBO_LENGTH           // Necesario para contar combos
+};
+
+// Posiciones de las teclas en la matriz (ajusta según tu teclado)
+const uint16_t PROGMEM clean_terminal_combo[] = {KC_LCTL, KC_LSFT, COMBO_END};
+
+// Asignar el combo a la acción deseada
+combo_t key_combos[COMBO_LENGTH] = {
+    [COMBO_CLEAN_TERMINAL] = COMBO(clean_terminal_combo, LCTL(KC_L)) // Enviar Ctrl+L
+};
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [0] = LAYOUT_split_3x6_3(
